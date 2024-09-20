@@ -26,7 +26,7 @@ https://github.com/bormotoff/anl_exploratoria1/blob/main/an_exploratoria1.ipynb
 
  - [Fonte utilizada na analise](https://github.com/bormotoff/anl_exploratoria1/blob/main/Base_Dados%20-%20Operacoes%20Uniao.csv)
  - [Fonte original dos dados](https://www.google.com/url?q=https%3A%2F%2Fdados.gov.br%2Fdados%2Fconjuntos-dados%2Foperacoes-copem)
-- [Referencia técnica CRISP-DM](https://www.google.com/url?q=https%3A%2F%2Fwww.dataviking.com.br%2Fpost%2Fcrisp-dm-e-util-mesmo%23%3A%7E%3Atext%3DO%2520CRISP%252DDM%2520%28Cross%252D%2Cuma%2520estrutura%2520clara%2520e%2520flex%25C3%25ADvel)
+ - [Referencia técnica CRISP-DM](https://www.google.com/url?q=https%3A%2F%2Fwww.dataviking.com.br%2Fpost%2Fcrisp-dm-e-util-mesmo%23%3A%7E%3Atext%3DO%2520CRISP%252DDM%2520%28Cross%252D%2Cuma%2520estrutura%2520clara%2520e%2520flex%25C3%25ADvel)
 
 
 
@@ -34,7 +34,7 @@ https://github.com/bormotoff/anl_exploratoria1/blob/main/an_exploratoria1.ipynb
 
 ## Entendimento dos dados
 
-Esses dados são informações sobre empréstimos e financiamentos que estados, municípios e o Distrito Federal do Brasil estão buscando. Vamos entender cada parte:
+Esses dados são informações sobre empréstimos e financiamentos que estados, municípios e o Distrito Federal do Brasil estão buscando para financiar projetos de insfraestrutura entre outros. Vamos entender cada parte:
 
 #### Interessado
 Quem está pedindo o empréstimo (por exemplo, um município).
@@ -67,8 +67,6 @@ Quem analisou o pedido (por exemplo, um banco ou órgão do governo).
 
 
 # Preparação dos dados
-
-
 
 ### Bibliotecas:
 
@@ -129,17 +127,49 @@ Base_Credito['Dia'] = Base_Credito.Data.dt.day
 Base_Credito.head()
 ##### Descrição
 Base_Credito.describe( include='all' ).transpose()
+
+Após a preparação dos dados iniciamos a fase de construção dos graficos basicos, selecionando as cores e os insights
+que iriamos explorar.
+
 ## Documentação de cores
 
 | Cor               | Hexadecimal                                                |
 | ----------------- | ---------------------------------------------------------------- |
-| Cor Azul       | ![#183FFE](https://via.placeholder.com/10/183FFE?text=+) #183FFE |
+| Cor Azul        | ![#183FFE](https://via.placeholder.com/10/183FFE?text=+) #183FFE |
 | Cor Verde       | ![#00D100](https://via.placeholder.com/10/00D100?text=+) #00D100 |
-| Cor Amarelo       | ![#FFD000](https://via.placeholder.com/10/FFD000?text=+) #FFD000 |
-| Cor Vermelho       | ![#FE0002](https://via.placeholder.com/10/FE0002?text=+) #FE0002 |
+| Cor Amarelo     | ![#FFD000](https://via.placeholder.com/10/FFD000?text=+) #FFD000 |
+| Cor Vermelho    | ![#FE0002](https://via.placeholder.com/10/FE0002?text=+) #FE0002 |
 
-As cores foram escolhidas de dentro do site oficial dos dados para fazer sentido com a analise.
+As cores foram escolhidas de dentro do logo oficial.
+[Logo](https://raw.githubusercontent.com/bormotoff/anl_exploratoria1/main/Fundo_Data_Viking%20-%20Icon.png)
 
-![Texto alternativo](https://raw.githubusercontent.com/bormotoff/anl_exploratoria1/main/Fundo_Data_Viking%20-%20Icon.png)
 
+## Insights explorados
 
+### Analise de Finalidades
+A primeira análise visa avaliar as razões pelos quais são solicitados Empréstimos. Em um primeiro momento notamos
+que o foco das declarações ocorre em "tipos" abrangentes que são Multissetoriais, Aquisição de equipamentos e principalmente Infraestrutura.
+Olhando com mais foco no tipo Infraestrutura, encontramos subcategorias como Rede de comunicação, Energia elétrica, aguá & esgoto e Telecomunicações.
+
+[Grafico top 10 finalidades](https://github.com/bormotoff/anl_exploratoria1/blob/main/Analise-finalidades.png)
+
+### Analise de Finalidade por Região
+Aprofundamos a analise para regiões para identificar quais as principais necessidades. 
+No grafico abaixo notamos que existe pouca variação entre as regiões quantos as finalidades, destacando-se o sudeste que aponta maior foco
+em Infraestrutura e equipamentos. Alguns insights podem ser explorados apartir dessa informação como analises demograficas, produção e escoamento
+
+[Grafico finalidadesXregião](https://github.com/bormotoff/anl_exploratoria1/blob/main/Analise-finalidades-regiao.png)
+
+### Distribuição por região e moeda
+Os empréstimos são solicitados em diversas moedas diferentes por causa da taxa de juros, apartir dessa possibilidade queremos entender
+qual a moeda mais requisitada e se existem perfis por região e mais tarde por cidade.
+
+[Distribuição](https://github.com/bormotoff/anl_exploratoria1/blob/main/Analise-percentual.png)
+
+### Previsão anual
+O ano de 2017 teve a maior taxa de solicitações de emprestimo aprovadas de todo periodo historico, selecionamos ele como corte
+e puxamos de 2017 até 2024 ainda incompleto. Apartir dai podemos buscar algumas explicações para essa margem que escoram na politica,
+situação financeira do país e dos bancos que são os principais Credores desses montantes.
+2024 não passará 2017 considerando o fluxo de aprovação e pagamento das cotas, mas apresenta um numero maior de solicitações em analise indicando que alcançara os anos de 2018 e 2019.
+
+[Previsão anual](https://github.com/bormotoff/anl_exploratoria1/blob/main/Analise-Anual.png)
